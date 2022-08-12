@@ -1,8 +1,13 @@
 import React from "react";
 import "../style.scss";
 import search from "../img/search.svg";
+import { useState } from "react";
+import JSONDATA from "../data.json";
 
 function SerchBarOne() {
+
+  const [searchTerm, setSearchTerm] = useState('');
+
   return (
     <div className="component-container">
       <div className="component-search">
@@ -10,26 +15,25 @@ function SerchBarOne() {
           <div className="search-icon">
             <img src={search} />
           </div>
-          <input type="text" placeholder="Start typing to search" />
+          <input type="text" placeholder="Start typing to search" onChange={(e)=> setSearchTerm(e.target.value)} />
         </form>
-        <h6>Popular searches</h6>
         <ul>
-          <li>
-            <a href="">Air transport</a>
+        {JSONDATA.filter((val) => {
+          if(searchTerm == ""){
+            return val
+          }
+          else if(val.first_name.toLowerCase().includes(searchTerm.toLowerCase())){
+            return val
+          }
+        }).map((val, key) =>{
+          return(
+          <li key={key} min="7">
+            <a href="#">{val.first_name}</a>
           </li>
-          <li>
-            <a href="">Avition</a>
-          </li>
-          <li>
-            <a href="">Mekaniske Verksted</a>
-          </li>
-          <li>
-            <a href="">Sporvei</a>
-          </li>
-          <li>
-            <a href="">Bergens Kreditbank</a>
-          </li>
+          )
+        })}
         </ul>
+        
       </div>
     </div>
   );

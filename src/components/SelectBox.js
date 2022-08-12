@@ -11,8 +11,8 @@ function SelectBox() {
                         <div className="key">Country</div>
                         <div className="value">
                             <select name="" id="">
-                                <option value="">Norway</option>
-                                <option value="">Turkey</option>
+                                <option value="norway">Norway</option>
+                                <option value="turkey">Turkey</option>
                             </select>
                         </div>
                     </li>
